@@ -1,0 +1,29 @@
+/**
+ * CSS fix to hide icons in province select elements
+ */
+
+/* Remove all icons from province select elements */
+.custom-select-form i {
+  display: none !important;
+}
+
+/* Remove the down arrow pseudo-element as well */
+.custom-select-form::after {
+  display: none !important;
+}
+
+/* Adjust padding for select elements without icons */
+.custom-select-form select {
+  padding-left: 15px !important;
+  padding-right: 15px !important;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24'%3E%3Cpath fill='%23b0b7c3' d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+}
+
+/* Ensure browser native select styling works */
+.custom-select-form select {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}

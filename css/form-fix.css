@@ -1,0 +1,122 @@
+/**
+ * Form fixes for icon positioning and validation feedback
+ */
+
+/* Fix form group structure */
+.form-group {
+  position: relative;
+  margin-bottom: 20px;
+}
+
+/* Fix input icon container */
+.input-icon {
+  position: relative;
+  display: block;
+}
+
+/* Hide feedback messages by default */
+.invalid-feedback {
+  display: none;
+  color: #e74c3c;
+  font-size: 13px;
+  margin-top: 5px;
+}
+
+/* Only show feedback when explicitly validated */
+.was-validated .form-control:invalid ~ .invalid-feedback,
+.form-control.is-invalid ~ .invalid-feedback {
+  display: block;
+}
+
+/* Style for left-side icons */
+.input-icon i:not(.toggle-password) {
+  position: absolute;
+  left: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #b0b7c3;
+  z-index: 2;
+  pointer-events: none;
+}
+
+/* Style for right-side icons (password toggle) */
+.input-icon .toggle-password {
+  position: absolute;
+  right: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #b0b7c3;
+  cursor: pointer;
+  z-index: 2;
+}
+
+/* Ensure inputs have proper padding for icons */
+.input-icon .form-control {
+  padding-left: 45px;
+  padding-right: 45px;
+}
+
+/* Fix select elements with icons */
+.custom-select-form {
+  position: relative;
+}
+
+.custom-select-form i {
+  position: absolute;
+  left: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #b0b7c3;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.custom-select-form:after {
+  content: '\f107';
+  font-family: 'Font Awesome 5 Free';
+  font-weight: 900;
+  position: absolute;
+  right: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #b0b7c3;
+  pointer-events: none;
+}
+
+.custom-select-form select {
+  padding-left: 45px;
+  padding-right: 30px;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+}
+
+/* Style checkboxes and radio buttons */
+.container_check,
+.container_radio {
+  padding-left: 35px;
+  position: relative;
+}
+
+.container_check .checkmark,
+.container_radio .checkmark {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+/* Fix focus color for icons */
+.form-control:focus ~ i {
+  color: #4e93e6;
+}
+
+/* Simple animation for validation */
+@keyframes shake {
+  0%, 100% {transform: translateX(0);}
+  10%, 30%, 50%, 70%, 90% {transform: translateX(-5px);}
+  20%, 40%, 60%, 80% {transform: translateX(5px);}
+}
+
+.shake {
+  animation: shake 0.5s linear;
+}

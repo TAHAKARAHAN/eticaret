@@ -1,0 +1,835 @@
+/*============================================================================================*/
+/* ACCOUNT PAGE */
+/*============================================================================================*/
+.box_account {
+  margin-bottom: 30px;
+  border-radius: 12px;
+  transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+  overflow: hidden;
+}
+
+.box_account:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+}
+
+.box_account h3 {
+  font-size: 22px;
+  font-weight: 600;
+  padding-left: 40px;
+  height: 36px;
+  padding-top: 6px;
+  display: inline-block;
+  color: #222;
+  margin-bottom: 20px;
+  position: relative;
+  z-index: 1;
+}
+
+.box_account h3:after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 35px;
+  height: 8px;
+  width: 40%;
+  background: rgba(78, 147, 230, 0.2);
+  z-index: -1;
+  border-radius: 10px;
+}
+
+.box_account h3.client {
+  background: url(../img/user.svg) center left no-repeat;
+  background-size: 28px;
+}
+
+.box_account h3.new_client {
+  background: url(../img/new_user.svg) center left no-repeat;
+  background-size: 28px;
+}
+
+.box_account .form_container {
+  background-color: #fff;
+  box-shadow: 0px 8px 30px rgba(0, 0, 0, 0.08);
+  padding: 35px;
+  border-radius: 12px;
+  position: relative;
+}
+
+.box_account .form_container hr {
+  margin: 25px 0;
+  border: none;
+  height: 1px;
+  background-image: linear-gradient(to right, rgba(0,0,0,0), rgba(0,0,0,0.1), rgba(0,0,0,0));
+}
+
+.box_account .form_container .form-group {
+  margin-bottom: 24px;
+  position: relative;
+}
+
+.box_account .form_container .form-control {
+  height: 52px;
+  border-radius: 8px;
+  border: 1px solid #e0e6ed;
+  padding: 10px 45px;
+  font-size: 15px;
+  transition: all 0.3s ease;
+  background-color: #f9fafc;
+  box-shadow: inset 0 1px 2px rgba(0,0,0,0.03);
+  font-weight: 400;
+}
+
+.box_account .form_container .form-control:focus {
+  border-color: #4e93e6;
+  box-shadow: 0 0 0 3px rgba(78, 147, 230, 0.15);
+  background-color: #fff;
+}
+
+/* Input icon positioning */
+.input-icon i {
+  position: absolute;
+  left: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #b0b7c3;
+  transition: all 0.3s ease;
+}
+
+.form-control:focus + i,
+.form-control:valid + i {
+  color: #4e93e6;
+}
+
+.toggle-password {
+  position: absolute;
+  right: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #b0b7c3;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.toggle-password:hover {
+  color: #4e93e6;
+}
+
+/* Password strength meter */
+.password-strength-meter {
+  height: 4px;
+  background-color: #eee;
+  border-radius: 2px;
+  position: relative;
+  margin: 10px 0 5px;
+  overflow: hidden;
+}
+
+.password-strength-meter-fill {
+  height: 100%;
+  border-radius: 2px;
+  width: 0;
+  transition: width 0.5s ease;
+}
+
+.password-feedback {
+  font-size: 12px;
+  margin-top: 5px;
+  color: #95a5a6;
+  text-align: right;
+}
+
+/* Social login buttons */
+.social_bt {
+  display: block;
+  text-align: center;
+  padding: 12px;
+  border-radius: 8px;
+  color: #fff;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+  margin-bottom: 10px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.social_bt:hover {
+  transform: translateY(-3px);
+  color: #fff;
+  box-shadow: 0 8px 15px rgba(0,0,0,0.15);
+}
+
+.social_bt:before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(255,255,255,0.1);
+  z-index: -1;
+  transform: scale(0);
+  transition: transform 0.5s;
+  border-radius: 100%;
+}
+
+.social_bt:hover:before {
+  transform: scale(3);
+}
+
+.social_bt i {
+  margin-right: 8px;
+}
+
+.social_bt.facebook {
+  background: #3b5998;
+}
+
+.social_bt.google {
+  background: #ea4335;
+}
+
+.social_bt.apple {
+  background: #000;
+}
+
+/* Divider styling */
+.divider {
+  text-align: center;
+  position: relative;
+  margin: 30px 0;
+  overflow: hidden;
+}
+
+.divider:before,
+.divider:after {
+  content: '';
+  display: inline-block;
+  width: 45%;
+  height: 1px;
+  background: #e8e8e8;
+  vertical-align: middle;
+  margin: 0 1%;
+}
+
+.divider span {
+  display: inline-block;
+  color: #888;
+  font-size: 14px;
+}
+
+/* Form elements styling */
+.btn_1 {
+  background: linear-gradient(135deg, #4e93e6, #2b6cb0);
+  border: none;
+  color: #fff;
+  padding: 14px 30px;
+  border-radius: 50px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  box-shadow: 0 5px 15px rgba(62, 123, 213, 0.3);
+  position: relative;
+  overflow: hidden;
+}
+
+.btn_1:hover {
+  background: linear-gradient(135deg, #2b6cb0, #4e93e6);
+  box-shadow: 0 8px 20px rgba(62, 123, 213, 0.4);
+  transform: translateY(-2px);
+}
+
+.btn_1:after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 5px;
+  height: 5px;
+  background: rgba(255, 255, 255, .5);
+  opacity: 0;
+  border-radius: 100%;
+  transform: scale(1, 1) translate(-50%);
+  transform-origin: 50% 50%;
+}
+
+@keyframes ripple {
+  0% {
+    transform: scale(0, 0);
+    opacity: 0.5;
+  }
+  100% {
+    transform: scale(20, 20);
+    opacity: 0;
+  }
+}
+
+.btn_1:focus:not(:active)::after {
+  animation: ripple 1s ease-out;
+}
+
+.btn_1.full-width {
+  width: 100%;
+  display: block;
+  padding: 14px;
+}
+
+.btn_link {
+  color: #4e93e6;
+  text-decoration: none;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.btn_link:after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 1px;
+  bottom: -2px;
+  left: 0;
+  background: #4e93e6;
+  transition: width 0.3s ease;
+}
+
+.btn_link:hover:after {
+  width: 100%;
+}
+
+.container_radio, .container_check {
+  display: block;
+  position: relative;
+  padding-left: 32px;
+  margin-bottom: 12px;
+  cursor: pointer;
+  font-size: 15px;
+  user-select: none;
+  font-weight: 400;
+  color: #444;
+  transition: all 0.2s ease;
+}
+
+.container_radio:hover, .container_check:hover {
+  color: #4e93e6;
+}
+
+.container_radio input, .container_check input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+.checkmark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 20px;
+  width: 20px;
+  background-color: #fff;
+  border: 2px solid #ddd;
+  border-radius: 3px;
+  transition: all 0.3s ease;
+}
+
+.container_radio .checkmark {
+  border-radius: 50%;
+}
+
+.container_radio:hover input ~ .checkmark,
+.container_check:hover input ~ .checkmark {
+  background-color: #f1f8ff;
+  border-color: #4e93e6;
+}
+
+.container_radio input:checked ~ .checkmark,
+.container_check input:checked ~ .checkmark {
+  background-color: #4e93e6;
+  border-color: #4e93e6;
+  transform: scale(1.05);
+}
+
+.checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+.container_radio input:checked ~ .checkmark:after,
+.container_check input:checked ~ .checkmark:after {
+  display: block;
+  animation: check-animation 0.2s ease-in-out;
+}
+
+@keyframes check-animation {
+  0% { transform: scale(0); opacity: 0; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+.container_check .checkmark:after {
+  left: 6px;
+  top: 2px;
+  width: 5px;
+  height: 10px;
+  border: solid white;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+}
+
+.container_radio .checkmark:after {
+  left: 6px;
+  top: 6px;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: white;
+}
+
+.form-hint {
+  color: #7f8c9d;
+  font-size: 13px;
+  margin-top: 6px;
+  line-height: 1.4;
+}
+
+.form-hint i {
+  margin-right: 5px;
+  color: #4e93e6;
+}
+
+.alert {
+  border-radius: 8px;
+  padding: 16px;
+  margin-bottom: 20px;
+  border: none;
+  display: flex;
+  align-items: center;
+}
+
+.alert i {
+  margin-right: 10px;
+  font-size: 18px;
+}
+
+.alert-success {
+  background-color: #edfaf2;
+  color: #2ecc71;
+  border-left: 4px solid #2ecc71;
+}
+
+.alert-danger {
+  background-color: #fdedec;
+  color: #e74c3c;
+  border-left: 4px solid #e74c3c;
+}
+
+.alert-info {
+  background-color: #ebf5fa;
+  color: #3498db;
+  border-left: 4px solid #3498db;
+}
+
+/* Animated validation icons */
+.form-validation-icon {
+  position: absolute;
+  right: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  opacity: 0;
+  transition: all 0.3s ease;
+  z-index: 1;
+}
+
+.is-valid + .form-validation-icon.valid-icon {
+  opacity: 1;
+  color: #2ecc71;
+}
+
+.is-invalid + .form-validation-icon.invalid-icon {
+  opacity: 1;
+  color: #e74c3c;
+}
+
+/* Tabs styling */
+.nav-tabs-account {
+  display: flex;
+  margin: 0 0 30px;
+  padding: 0;
+  list-style: none;
+  border-bottom: 1px solid #eaeaea;
+}
+
+.nav-tabs-account li {
+  margin: 0 25px 0 0;
+}
+
+.nav-tabs-account a {
+  display: block;
+  padding: 10px 5px;
+  position: relative;
+  color: #7f8c9d;
+  font-weight: 500;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.nav-tabs-account a:hover {
+  color: #4e93e6;
+}
+
+.nav-tabs-account a:after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 3px;
+  background: #4e93e6;
+  bottom: -1px;
+  left: 0;
+  transition: width 0.3s ease;
+}
+
+.nav-tabs-account a.active {
+  color: #4e93e6;
+}
+
+.nav-tabs-account a.active:after {
+  width: 100%;
+}
+
+/* Responsive adjustments */
+@media (max-width: 991px) {
+  .box_account .form_container {
+    padding: 25px;
+  }
+  
+  .social_bt {
+    margin-bottom: 15px;
+  }
+  
+  .nav-tabs-account li {
+    margin: 0 15px 0 0;
+  }
+}
+
+@media (max-width: 767px) {
+  .box_account {
+    margin-bottom: 30px;
+  }
+  
+  .box_account h3 {
+    font-size: 20px;
+  }
+  
+  .box_account .form_container {
+    padding: 20px;
+  }
+  
+  .divider:before,
+  .divider:after {
+    width: 40%;
+  }
+}
+
+@media (max-width: 575px) {
+  .box_account .form_container {
+    padding: 15px;
+  }
+  
+  .box_account h3 {
+    font-size: 18px;
+    padding-left: 35px;
+    background-size: 24px;
+  }
+  
+  .btn_1 {
+    padding: 12px 20px;
+  }
+  
+  .social_bt {
+    font-size: 14px;
+  }
+}
+
+/* Animation classes */
+.fade-in {
+  animation: fadeIn 0.5s ease-out;
+}
+
+.fade-in-up {
+  animation: fadeInUp 0.5s ease-out;
+}
+
+.fade-in-left {
+  animation: fadeInLeft 0.5s ease-out;
+}
+
+.fade-in-right {
+  animation: fadeInRight 0.5s ease-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes fadeInRight {
+  from {
+    opacity: 0;
+    transform: translateX(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.shake {
+  animation: shake 0.5s linear;
+}
+
+@keyframes shake {
+  0%, 100% {transform: translateX(0);}
+  10%, 30%, 50%, 70%, 90% {transform: translateX(-5px);}
+  20%, 40%, 60%, 80% {transform: translateX(5px);}
+}
+
+.pulse {
+  animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(78, 147, 230, 0.4);
+  }
+  70% {
+    box-shadow: 0 0 0 10px rgba(78, 147, 230, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(78, 147, 230, 0);
+  }
+}
+
+/* Input icon positioning fix */
+.input-icon {
+  position: relative;
+}
+
+.input-icon i.fa-envelope,
+.input-icon i.fa-user,
+.input-icon i.fa-home,
+.input-icon i.fa-map-marker-alt,
+.input-icon i.fa-building,
+.input-icon i.fa-phone,
+.input-icon i.fa-briefcase {
+  position: absolute;
+  left: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #b0b7c3;
+  transition: all 0.3s ease;
+  z-index: 1;
+}
+
+.input-icon i.toggle-password {
+  position: absolute;
+  right: 15px;
+  left: auto;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #b0b7c3;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  z-index: 1;
+}
+
+.input-icon i.toggle-password:hover {
+  color: #4e93e6;
+}
+
+/* Fix form control padding for icon alignment */
+.box_account .form_container .form-control {
+  padding-left: 45px;
+  padding-right: 45px;
+}
+
+.box_account .form_container .form-control:focus + i,
+.box_account .form_container .form-control:valid + i {
+  color: #4e93e6;
+}
+
+/* Fix for validation icons */
+.form-validation-icon {
+  position: absolute;
+  right: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  opacity: 0;
+  transition: all 0.3s ease;
+  z-index: 1;
+}
+
+/* Ensure password toggle and validation icons don't overlap */
+.input-icon .toggle-password + .form-validation-icon {
+  right: 40px;
+}
+
+/* Icon positioning and feedback visibility fixes */
+
+/* Form control padding and positioning fix */
+.box_account .form_container .form-control {
+  height: 52px;
+  border-radius: 8px;
+  border: 1px solid #e0e6ed;
+  padding: 10px 45px;
+  font-size: 15px;
+  transition: all 0.3s ease;
+  background-color: #f9fafc;
+  box-shadow: inset 0 1px 2px rgba(0,0,0,0.03);
+  font-weight: 400;
+}
+
+/* Reset padding for selects since they have different internal padding */
+.custom-select-form select.wide {
+  padding-right: 30px;
+  padding-left: 45px;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+
+/* Input icon positioning with better z-index control */
+.input-icon {
+  position: relative;
+  display: block;
+}
+
+.input-icon i.fa,
+.input-icon i.fas,
+.input-icon i.far,
+.input-icon i.fab {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 2;
+}
+
+.input-icon i:not(.toggle-password) {
+  left: 15px;
+  color: #b0b7c3;
+  transition: all 0.3s ease;
+}
+
+.input-icon i.toggle-password {
+  right: 15px;
+  color: #b0b7c3;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+/* Hide feedback unless form is submitted or field is invalid */
+.invalid-feedback {
+  display: none;
+}
+
+.was-validated .form-control:invalid ~ .invalid-feedback,
+.form-control.is-invalid ~ .invalid-feedback {
+  display: block;
+}
+
+/* Make sure validation icons don't overlap toggle icons */
+.form-control.is-invalid,
+.was-validated .form-control:invalid {
+  background-image: none;
+  padding-right: 45px;
+}
+
+.form-control.is-valid,
+.was-validated .form-control:valid {
+  background-image: none;
+  padding-right: 45px;
+}
+
+/* Fix select element icon positioning */
+.custom-select-form {
+  position: relative;
+}
+
+.custom-select-form::after {
+  content: '\f107';
+  font-family: 'Font Awesome 5 Free';
+  font-weight: 900;
+  position: absolute;
+  top: 50%;
+  right: 15px;
+  transform: translateY(-50%);
+  color: #b0b7c3;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.custom-select-form i:not(.toggle-password) {
+  position: absolute;
+  left: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #b0b7c3;
+  z-index: 2;
+  pointer-events: none;
+}
+
+/* Fix checkbox positioning */
+.container_check,
+.container_radio {
+  position: relative;
+  padding-left: 35px;
+  margin-bottom: 12px;
+  cursor: pointer;
+  font-size: 15px;
+}
+
+.container_check .checkmark,
+.container_radio .checkmark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 20px;
+  width: 20px;
+}
+
+/* Fix icon color when form control is focused */
+.form-control:focus ~ i:not(.toggle-password),
+.form-control:valid ~ i:not(.toggle-password) {
+  color: #4e93e6;
+}

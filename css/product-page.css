@@ -1,0 +1,122 @@
+/* Product page specific styling to fix spacing issues between sections */
+
+/* Fix footer spacing issue */
+html, body {
+  min-height: 100%;
+  height: auto;
+  margin: 0;
+  padding: 0;
+}
+
+/* Make sure page container has proper layout */
+#page {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* Make main content take available space */
+main {
+  flex: 1 0 auto;
+  display: block;
+  position: relative;
+}
+
+/* Remove any bottom margins that could cause spacing issues */
+main > div:last-child {
+  margin-bottom: 0;
+}
+
+/* Fix the feat section specifically */
+.feat {
+  background-color: #f8f8f8;
+  padding: 30px 0 0;
+  margin-bottom: 0;
+}
+
+.feat ul {
+  margin: 0;
+  padding: 0 0 20px 0; /* Add padding to the bottom of the list instead */
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.feat ul:after {
+  content: '';
+  display: table;
+  clear: both;
+}
+
+.feat ul li {
+  float: none;
+  width: 33.33%;
+  text-align: center;
+  padding: 0 15px;
+  box-sizing: border-box;
+}
+
+.feat .box {
+  padding: 15px 5px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.feat .box i {
+  font-size: 50px;
+  color: #CD1818;
+  line-height: 1;
+  margin-bottom: 10px;
+}
+
+.feat .box h3 {
+  margin-top: 0;
+  margin-bottom: 5px;
+  font-size: 18px;
+}
+
+.feat .box p {
+  margin-bottom: 0;
+  font-size: 14px;
+}
+
+/* Footer styling to ensure proper adjacency */
+footer.revealed {
+  margin-top: 0;
+  padding-top: 30px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 767px) {
+  .feat ul {
+    flex-direction: column;
+  }
+  
+  .feat ul li {
+    width: 100%;
+    margin-bottom: 15px;
+  }
+  
+  .feat .box {
+    flex-direction: row;
+    text-align: left;
+    padding: 10px 5px;
+  }
+  
+  .feat .box i {
+    font-size: 30px;
+    margin-right: 15px;
+    margin-bottom: 0;
+  }
+  
+  .feat .box .justify-content-center {
+    text-align: left;
+    align-items: flex-start;
+  }
+}
+
+/* Make sure the product carousel section doesn't add extra margin */
+.container.margin_60_35 {
+  margin-bottom: 0;
+}

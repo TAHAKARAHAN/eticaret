@@ -1,0 +1,101 @@
+/* Special CSS file to fix the feat section display issues */
+
+/* Reset the problematic styles */
+.feat {
+  margin: 0;
+  padding: 30px 0;
+  background-color: #f8f8f8;
+  position: relative;
+  z-index: 1;
+}
+
+/* Clear the feat section to prevent float issues */
+.feat::before,
+.feat::after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* Use flexbox for proper alignment and distribution */
+.feat ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+
+.feat ul li {
+  width: 33.33%;
+  text-align: center;
+  padding: 0 15px;
+  box-sizing: border-box;
+  margin-bottom: 0;
+}
+
+/* Style each feature box */
+.feat .box {
+  width: 100%;
+  display: inline-block;
+  text-align: center;
+  padding: 0;
+}
+
+/* Style the icons */
+.feat .box i {
+  font-size: 50px;
+  color: #CD1818;
+  margin-bottom: 15px;
+  display: block;
+}
+
+/* Style the text */
+.feat .box h3 {
+  margin: 0 0 5px 0;
+  font-size: 18px;
+  font-weight: 500;
+}
+
+.feat .box p {
+  margin: 0;
+  font-size: 14px;
+  color: #555;
+}
+
+/* Remove any extra spacing that might cause gaps */
+.feat + * {
+  margin-top: 0;
+}
+
+main {
+  overflow: hidden;
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
+
+footer.revealed {
+  margin-top: 0;
+}
+
+/* Responsive styles */
+@media (max-width: 767px) {
+  .feat ul {
+    flex-direction: column;
+  }
+  
+  .feat ul li {
+    width: 100%;
+    margin-bottom: 20px;
+  }
+  
+  .feat ul li:last-child {
+    margin-bottom: 0;
+  }
+  
+  .feat .box i {
+    font-size: 40px;
+    margin-bottom: 10px;
+  }
+}
