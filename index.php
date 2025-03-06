@@ -51,72 +51,7 @@ define("SITE", $siteurl);
 	<link href="<?= SITE ?>css/custom.css" rel="stylesheet">
 	
 	<!-- Add notification CSS -->
-	<style>
-		.notification {
-			position: fixed;
-			top: 20px;
-			right: 20px;
-			background-color: #4caf50;
-			color: white;
-			padding: 15px 20px;
-			border-radius: 4px;
-			box-shadow: 0 2px 10px rgba(0,0,0,0.2);
-			z-index: 9999;
-			transform: translateX(150%);
-			transition: transform 0.3s ease-in-out;
-			display: flex;
-			align-items: center;
-			max-width: 350px;
-		}
-
-		.notification.show {
-			transform: translateX(0);
-		}
-
-		.notification i {
-			margin-right: 10px;
-			font-size: 20px;
-		}
-
-		.notification-content {
-			flex-grow: 1;
-		}
-
-		.notification-title {
-			font-weight: bold;
-			margin-bottom: 5px;
-		}
-
-		.notification-message {
-			font-size: 14px;
-		}
-
-		.notification-close {
-			background: none;
-			border: none;
-			color: white;
-			font-size: 20px;
-			cursor: pointer;
-			padding: 0;
-			margin-left: 15px;
-		}
-
-		.notification-actions {
-			margin-top: 10px;
-		}
-
-		.notification-actions a {
-			display: inline-block;
-			background-color: white;
-			color: #4caf50;
-			padding: 5px 10px;
-			border-radius: 3px;
-			text-decoration: none;
-			margin-right: 10px;
-			font-size: 12px;
-			font-weight: bold;
-		}
-	</style>
+	<link href="<?= SITE ?>css/notification.css" rel="stylesheet">
 
 </head>
 
@@ -142,11 +77,7 @@ define("SITE", $siteurl);
 
 
 		include_once(DATA . "footer.php");
-		?>
-
-
-
-
+			?>
 
 	</div>
 	<!-- page -->
@@ -156,21 +87,25 @@ define("SITE", $siteurl);
 	<!-- COMMON SCRIPTS -->
 	<script src="<?= SITE ?>js/common_scripts.min.js"></script>
 	<script src="<?= SITE ?>js/main.js"></script>
+	
+	<!-- Define SITE for JavaScript -->
+	<script>
+		var SITE = '<?= SITE ?>';
+	</script>
+	
 	<script src="<?= SITE ?>js/sistem.js"></script>
 
 	<!-- SPECIFIC SCRIPTS -->
 	<script src="<?= SITE ?>js/carousel-home.min.js"></script>
-	<script  src="<?=SITE?>js/carousel_with_thumbs.js"></script>
+	<script src="<?= SITE ?>js/carousel_with_thumbs.js"></script>
 	
-
-
 	<script>
-    	// Client type Panel
+		// Client type Panel
 		$('input[name="client_type"]').on("click", function() {
-		    var inputValue = $(this).attr("value");
-		    var targetBox = $("." + inputValue);
-		    $(".box").not(targetBox).hide();
-		    $(targetBox).show();
+			var inputValue = $(this).attr("value");
+			var targetBox = $("." + inputValue);
+			$(".box").not(targetBox).hide();
+			$(targetBox).show();
 		});
 	</script>
 

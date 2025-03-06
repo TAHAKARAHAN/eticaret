@@ -545,24 +545,38 @@ else
         </main>
         <!-- /main -->
 
-        <!-- Add our notification JavaScript -->
+        <!-- Define product data for JavaScript -->
         <script>
-            var SITE = '<?=SITE?>';
-        </script>
-        <script src="<?=SITE?>js/notification.js"></script>
-
-        <!-- Script to ensure footer appears correctly -->
-        <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // Force redraw of the footer to avoid spacing issues
-            var footer = document.querySelector('footer');
-            if(footer) {
-                footer.style.display = 'none';
-                setTimeout(function() {
-                    footer.style.display = 'block';
-                }, 10);
-            }
-        });
+            // Make product info available to JavaScript
+            var productData = {
+                name: "<?=htmlspecialchars(stripslashes($urunbilgisi[0]["baslik"]), ENT_QUOTES)?>",
+                price: "<?=!empty($urunbilgisi[0]["indirimlifiyat"]) ? 
+                    number_format(($urunbilgisi[0]["indirimlifiyat"].".".$urunbilgisi[0]["indirimlikurus"]),2,",",".") : 
+                    number_format(($urunbilgisi[0]["fiyat"].".".$urunbilgisi[0]["kurus"]),2,",",".")?> TL",
+                rawPrice: <?=!empty($urunbilgisi[0]["indirimlifiyat"]) ? 
+                    ($urunbilgisi[0]["indirimlifiyat"].".".$urunbilgisi[0]["indirimlikurus"]) : 
+                    ($urunbilgisi[0]["fiyat"].".".$urunbilgisi[0]["kurus"])?>,
+                image: "<?=SITE?>images/urunler/<?=$urunbilgisi[0]["resim"]?>"
+            };
+            
+            document.addEventListener('DOMContentLoaded', function() {
+                // Force redraw of the footer to avoid spacing issues
+                var footer = document.querySelector('footer');
+                if(footer) {
+                    footer.style.display = 'none';
+                    setTimeout(function() {
+                        footer.style.display = 'block';
+                    }, 10);
+                }
+                
+                // Add event listener to quantity input to update prices if needed
+                var quantityInput = document.getElementById('adet');
+                if (quantityInput) {
+                    quantityInput.addEventListener('change', function() {
+                        // You can add code here if you want to update any displayed total price on the page
+                    });
+                }
+            });
         </script>
 
         <?php
