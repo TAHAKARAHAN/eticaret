@@ -66,6 +66,12 @@ function updateHeaderCartCount() {
                         } else {
                             cartDropdownText.textContent = "Sepetiniz boş";
                         }
+                        
+                        // Apply highlight animation to show the count has updated
+                        cartDropdownText.classList.add('highlight');
+                        setTimeout(() => {
+                            cartDropdownText.classList.remove('highlight');
+                        }, 1000);
                     }
                 }
             } catch (error) {

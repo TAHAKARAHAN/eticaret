@@ -173,7 +173,7 @@
 								
 							</div>
 							<ul>
-								<li><a onclick="favoriyeEkle('<?=SITE?>','<?=$urunler[$i]["ID"]?>','<?=md5(sha1($urunler[$i]["ID"]))?>');" class="tooltip-1" data-toggle="tooltip" data-placement="left"
+								<li><a onclick="favoriyeEkle('<?=SITE?>','<?=$urunler[$i]["ID"]?>','<?=md5(sha1($urunler[$i]["ID"]))?>');" class="tooltip-1" data-toggle="tooltip" data-placement="right"
 										title="Favoriye Ekle"><i class="ti-heart"></i><span>Favoriye Ekle</span></a></li>
 							</ul>
 						</div>

@@ -108,88 +108,130 @@ if (!empty($_GET["seflink"])) {
                             
                             ?>
                                
-                                <div class="row">
-                                    <label class="col-xl-5 col-lg-5  col-md-6 col-6"><strong>Adet</strong></label>
-                                    <div class="col-xl-4 col-lg-5 col-md-6 col-6">
-                                        <div class="numbers-row">
-                                            <input type="text" value="1" id="adet" class="qty2 adet" name="adet">
+                                <!-- PRICE AND QUANTITY SECTION -->
+                                <div class="price-quantity-container">
+                                    <div class="row">
+                                        <label class="col-xl-5 col-lg-5  col-md-6 col-6"><strong>Adet</strong></label>
+                                        <div class="col-xl-4 col-lg-5 col-md-6 col-6">
+                                            <div class="numbers-row">
+                                                <input type="text" value="1" id="adet" class="qty2 adet" name="adet">
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                                
-                                <!-- NEW PRICE ROW: Added price field with same layout as quantity -->
-                                <div class="row">
-                                    <label class="col-xl-5 col-lg-5 col-md-6 col-6"><strong>Fiyat</strong></label>
-                                    <div class="col-xl-4 col-lg-5 col-md-6 col-6">
-                                        <div class="price-display">
-                                            <?php
-                                            $indirimOranBilgisi="";
-                                            if(!empty($urunbilgisi[0]["indirimlifiyat"]))
-                                            {
-                                                $indirimlifiyat=$urunbilgisi[0]["indirimlifiyat"].".".$urunbilgisi[0]["indirimlikurus"];
-                                                $normalfiyat=$urunbilgisi[0]["fiyat"].".".$urunbilgisi[0]["kurus"];
-                                                $hesapla=(($indirimlifiyat/$normalfiyat)*100);
-                                                $indirimorani=round(100-$hesapla);
-                                                /* İndirim Oranı Hesaplaması*/
-                                                $indirimOranBilgisi='<span class="percentage">%'.$indirimorani.' İndirimli</span> ';
-                                            }
-                                            
-                                            if(!empty($urunbilgisi[0]["indirimlifiyat"]))
-                                            {
-                                                $fiyat=$urunbilgisi[0]["indirimlifiyat"].".".$urunbilgisi[0]["indirimlikurus"];
-                                                $normalfiyat=$urunbilgisi[0]["fiyat"].".".$urunbilgisi[0]["kurus"];
-                                               
-                                                if($urunbilgisi[0]["kdvdurum"]==1)
+                                    
+                                    <div class="row">
+                                        <label class="col-xl-5 col-lg-5 col-md-6 col-6"><strong>Fiyat</strong></label>
+                                        <div class="col-xl-4 col-lg-5 col-md-6 col-6">
+                                            <div class="price-display">
+                                                <?php
+                                                $indirimOranBilgisi="";
+                                                if(!empty($urunbilgisi[0]["indirimlifiyat"]))
                                                 {
-                                                    if($urunbilgisi[0]["kdvoran"]>9)
-                                                    {
-                                                        $oran="1.".$urunbilgisi[0]["kdvoran"];
-                                                    }
-                                                    else
-                                                    {
-                                                        $oran="1.0".$urunbilgisi[0]["kdvoran"];
-                                                    }
-                                                    $fiyat=($fiyat/$oran);/*kdvsiz hali*/
-                                                    $normalfiyat=($normalfiyat/$oran);
+                                                    $indirimlifiyat=$urunbilgisi[0]["indirimlifiyat"].".".$urunbilgisi[0]["indirimlikurus"];
+                                                    $normalfiyat=$urunbilgisi[0]["fiyat"].".".$urunbilgisi[0]["kurus"];
+                                                    $hesapla=(($indirimlifiyat/$normalfiyat)*100);
+                                                    $indirimorani=round(100-$hesapla);
+                                                    /* İndirim Oranı Hesaplaması*/
+                                                    $indirimOranBilgisi='<span class="percentage">%'.$indirimorani.' İndirimli</span> ';
                                                 }
-                                            ?>
-                                            <span class="new_price"><?=number_format($fiyat,2,",",".")?> TL</span>
-                                            <?=$indirimOranBilgisi?>
-                                            <span class="old_price"><?=number_format($normalfiyat,2,",",".")?> TL</span>
-                                            <?php
-                                            }
-                                            else
-                                            {
-                                                $fiyat=$urunbilgisi[0]["fiyat"].".".$urunbilgisi[0]["kurus"];
-                                                if($urunbilgisi[0]["kdvdurum"]==1)
+                                                
+                                                if(!empty($urunbilgisi[0]["indirimlifiyat"]))
                                                 {
-                                                    if($urunbilgisi[0]["kdvoran"]>9)
+                                                    $fiyat=$urunbilgisi[0]["indirimlifiyat"].".".$urunbilgisi[0]["indirimlikurus"];
+                                                    $normalfiyat=$urunbilgisi[0]["fiyat"].".".$urunbilgisi[0]["kurus"];
+                                                   
+                                                    if($urunbilgisi[0]["kdvdurum"]==1)
                                                     {
-                                                        $oran="1.".$urunbilgisi[0]["kdvoran"];
+                                                        if($urunbilgisi[0]["kdvoran"]>9)
+                                                        {
+                                                            $oran="1.".$urunbilgisi[0]["kdvoran"];
+                                                        }
+                                                        else
+                                                        {
+                                                            $oran="1.0".$urunbilgisi[0]["kdvoran"];
+                                                        }
+                                                        $fiyat=($fiyat/$oran);/*kdvsiz hali*/
+                                                        $normalfiyat=($normalfiyat/$oran);
                                                     }
-                                                    else
-                                                    {
-                                                        $oran="1.0".$urunbilgisi[0]["kdvoran"];
-                                                    }
-                                                    $fiyat=($fiyat/$oran);/*kdvsiz hali*/
+                                                ?>
+                                                <span class="new_price"><?=number_format($fiyat,2,",",".")?> TL</span>
+                                                <?=$indirimOranBilgisi?>
+                                                <span class="old_price"><?=number_format($normalfiyat,2,",",".")?> TL</span>
+                                                <?php
                                                 }
-                                            ?>
-                                            <span class="new_price"><?=number_format($fiyat,2,",",".")?> TL</span>
-                                            <?php
-                                            }
-                                            ?>
+                                                else
+                                                {
+                                                    $fiyat=$urunbilgisi[0]["fiyat"].".".$urunbilgisi[0]["kurus"];
+                                                    if($urunbilgisi[0]["kdvdurum"]==1)
+                                                    {
+                                                        if($urunbilgisi[0]["kdvoran"]>9)
+                                                        {
+                                                            $oran="1.".$urunbilgisi[0]["kdvoran"];
+                                                        }
+                                                        else
+                                                        {
+                                                            $oran="1.0".$urunbilgisi[0]["kdvoran"];
+                                                        }
+                                                        $fiyat=($fiyat/$oran);/*kdvsiz hali*/
+                                                    }
+                                                ?>
+                                                <span class="new_price"><?=number_format($fiyat,2,",",".")?> TL</span>
+                                                <?php
+                                                }
+                                                ?>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- ADD TO CART BUTTON -->
+                                    <div class="row">
+                                        <div class="col-12 mt-3">
+                                            <div class="btn_add_to_cart">
+                                                <a href="javascript:void(0);" onclick="sepeteEkle('<?=SITE?>',<?=$urunbilgisi[0]['ID']?>);" class="btn_1">Sepete Ekle</a>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
+                                <!-- END OF PRICE AND QUANTITY SECTION -->
                                 
-                                <!-- ADD TO CART BUTTON - MOVED INSIDE THE FORM -->
-                                <div class="row">
-                                    <div class="col-12 mt-3">
-                                        <div class="btn_add_to_cart">
-                                            <a href="javascript:void(0);" onclick="sepeteEkle('<?=SITE?>',<?=$urunbilgisi[0]['ID']?>);" class="btn_1">Sepete Ekle</a>
-                                        </div>
+                                <!-- TECHNICAL SPECIFICATIONS SECTION - Separate container -->
+                                <div class="tech-specs-container">
+                                    <h5>Teknik Özellikler</h5>
+                                    <div class="table-responsive">
+                                        <table class="table">
+                                            <tbody>
+                                                <?php if(!empty($urunbilgisi[0]["marka"])): ?>
+                                                <tr>
+                                                    <th>Marka</th>
+                                                    <td><?=stripslashes($urunbilgisi[0]["marka"])?></td>
+                                                </tr>
+                                                <?php endif; ?>
+                                                
+                                                <?php if(!empty($urunbilgisi[0]["renk"])): ?>
+                                                <tr>
+                                                    <th>Renk</th>
+                                                    <td><?=stripslashes($urunbilgisi[0]["renk"])?></td>
+                                                </tr>
+                                                <?php endif; ?>
+                                                
+                                                <?php if(!empty($urunbilgisi[0]["agirlik"])): ?>
+                                                <tr>
+                                                    <th>Ağırlık</th>
+                                                    <td><?=stripslashes($urunbilgisi[0]["agirlik"])?></td>
+                                                </tr>
+                                                <?php endif; ?>
+                                                
+                                                <?php if(!empty($urunbilgisi[0]["adet"])): ?>
+                                                <tr>
+                                                    <th>Stok Adedi</th>
+                                                    <td><?=stripslashes($urunbilgisi[0]["adet"])?></td>
+                                                </tr>
+                                                <?php endif; ?>
+                                            </tbody>
+                                        </table>
                                     </div>
                                 </div>
+                                <!-- END OF TECHNICAL SPECIFICATIONS SECTION -->
                             </form>
                         </div>
                     </div>
@@ -612,20 +654,62 @@ else
             display: inline-block;
         }
         
+        /* Container styles for better separation */
+        .price-quantity-container {
+            background-color: #f9f9f9;
+            border-radius: 5px;
+            padding: 15px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+        
+        .tech-specs-container {
+            background-color: #fff;
+            border: 1px solid #e9ecef;
+            border-radius: 5px;
+            padding: 15px;
+            margin-top: 25px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.03);
+        }
+        
+        .tech-specs-container h5 {
+            color: #333;
+            font-weight: 600;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #e9ecef;
+        }
+        
         /* Ensure consistent button spacing */
         .btn_add_to_cart {
-            margin-top: 20px;
+            margin-top: 15px;
+        }
+        
+        /* Table styling for tech specs */
+        .tech-specs-container .table th {
+            width: 40%;
+            background-color: #f8f9fa;
+            font-weight: 500;
+        }
+        
+        .tech-specs-container .table td {
+            width: 60%;
         }
         
         /* Adjust responsive spacing */
         @media (max-width: 767px) {
-            .price-display {
-                padding: 5px 0;
+            .price-quantity-container,
+            .tech-specs-container {
+                padding: 10px;
+            }
+            
+            .tech-specs-container {
+                margin-top: 15px;
             }
             
             .btn_add_to_cart {
-                margin-top: 15px;
-                margin-bottom: 15px;
+                margin-top: 10px;
+                margin-bottom: 10px;
             }
         }
     </style>
