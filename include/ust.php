@@ -39,13 +39,11 @@ if ($VT->IDGetir($_SERVER['REQUEST_URI']) != false) {
 
     <!-- SPECIFIC CSS -->
     <link href="<?= SITE ?>css/cart.css" rel="stylesheet">
-    <link href="<?= SITE ?>css/cart-notification.css" rel="stylesheet">
-
-    <!-- YOUR CUSTOM CSS -->
     <link href="<?= SITE ?>css/custom.css" rel="stylesheet">
     
-    <!-- Load notification JS first to ensure it's available -->
+    <!-- Load notifications scripts -->
     <script src="<?= SITE ?>js/cart-notification.js"></script>
+    <script src="<?= SITE ?>js/sepet-islemleri.js"></script>
 </head>
 
 <body>

@@ -1,8 +1,5 @@
 <?php
-// Place this code at the very beginning of index.php
-if (session_status() === PHP_SESSION_NONE) {
-    @session_start();
-}
+@session_start();
 @ob_start();
 define("DATA", "data/");
 define("SAYFA", "include/");
@@ -49,9 +46,6 @@ define("SITE", $siteurl);
 
 	<!-- YOUR CUSTOM CSS -->
 	<link href="<?= SITE ?>css/custom.css" rel="stylesheet">
-	
-	<!-- Add notification CSS -->
-	<link href="<?= SITE ?>css/notification.css" rel="stylesheet">
 
 </head>
 
@@ -77,7 +71,11 @@ define("SITE", $siteurl);
 
 
 		include_once(DATA . "footer.php");
-			?>
+		?>
+
+
+
+
 
 	</div>
 	<!-- page -->
@@ -87,25 +85,21 @@ define("SITE", $siteurl);
 	<!-- COMMON SCRIPTS -->
 	<script src="<?= SITE ?>js/common_scripts.min.js"></script>
 	<script src="<?= SITE ?>js/main.js"></script>
-	
-	<!-- Define SITE for JavaScript -->
-	<script>
-		var SITE = '<?= SITE ?>';
-	</script>
-	
 	<script src="<?= SITE ?>js/sistem.js"></script>
 
 	<!-- SPECIFIC SCRIPTS -->
 	<script src="<?= SITE ?>js/carousel-home.min.js"></script>
-	<script src="<?= SITE ?>js/carousel_with_thumbs.js"></script>
+	<script  src="<?=SITE?>js/carousel_with_thumbs.js"></script>
 	
+
+
 	<script>
-		// Client type Panel
+    	// Client type Panel
 		$('input[name="client_type"]').on("click", function() {
-			var inputValue = $(this).attr("value");
-			var targetBox = $("." + inputValue);
-			$(".box").not(targetBox).hide();
-			$(targetBox).show();
+		    var inputValue = $(this).attr("value");
+		    var targetBox = $("." + inputValue);
+		    $(".box").not(targetBox).hide();
+		    $(targetBox).show();
 		});
 	</script>
 

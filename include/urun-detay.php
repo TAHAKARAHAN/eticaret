@@ -8,6 +8,8 @@ if (!empty($_GET["seflink"])) {
         <link href="<?= SITE ?>css/feat-fix.css" rel="stylesheet"> <!-- Add our new dedicated CSS file -->
         <link href="<?=SITE?>css/leave_review.css" rel="stylesheet">
         <link href="<?=SITE?>css/notification.css" rel="stylesheet">
+        <link href="<?=SITE?>css/responsive-product.css" rel="stylesheet">
+        <link href="<?=SITE?>css/responsive-product-fixes.css" rel="stylesheet">
         <main>
             <div class="container margin_30">
             
@@ -114,253 +116,258 @@ if (!empty($_GET["seflink"])) {
                                         </div>
                                     </div>
                                 </div>
-                                </form>
-                            </div>
-                            <div class="row">
-                                <div class="col-lg-5 col-md-6">
-                                    
-                                    <?php
-                                    $indirimOranBilgisi="";
-                                    if(!empty($urunbilgisi[0]["indirimlifiyat"]))
-                                    {
-                                        $indirimlifiyat=$urunbilgisi[0]["indirimlifiyat"].".".$urunbilgisi[0]["indirimlikurus"];
-                                        $normalfiyat=$urunbilgisi[0]["fiyat"].".".$urunbilgisi[0]["kurus"];
-                                        $hesapla=(($indirimlifiyat/$normalfiyat)*100);
-                                        $indirimorani=round(100-$hesapla);
-                                        /* İndirim Oranı Hesaplaması*/
-                                        $indirimOranBilgisi='<span class="percentage">%'.$indirimorani.' İndirimli</span> ';
-                                        
-
-                                    }
-                                    ?>
-                                    <?php
-if(!empty($urunbilgisi[0]["indirimlifiyat"]))
-{
-    $fiyat=$urunbilgisi[0]["indirimlifiyat"].".".$urunbilgisi[0]["indirimlikurus"];
-    $normalfiyat=$urunbilgisi[0]["fiyat"].".".$urunbilgisi[0]["kurus"];
-   
-								if($urunbilgisi[0]["kdvdurum"]==1)
-							{
-								if($urunbilgisi[0]["kdvoran"]>9)
-								{
-									$oran="1.".$urunbilgisi[0]["kdvoran"];
-								}
-								else
-								{
-									$oran="1.0".$urunbilgisi[0]["kdvoran"];
-								}
-								$fiyat=($fiyat/$oran);/*kdvsiz hali*/
-								$normalfiyat=($normalfiyat/$oran);
-							}
-    ?>
-    <span class="new_price"><?=number_format($fiyat,2,",",".")?> TL</span>
-<?=$indirimOranBilgisi?>
-    <span class="old_price"><?=number_format($normalfiyat,2,",",".")?> TL</span>
-    <?php
-}
-else
-{
-    $fiyat=$urunbilgisi[0]["fiyat"].".".$urunbilgisi[0]["kurus"];
-    if($urunbilgisi[0]["kdvdurum"]==1)
-							{
-								if($urunbilgisi[0]["kdvoran"]>9)
-								{
-									$oran="1.".$urunbilgisi[0]["kdvoran"];
-								}
-								else
-								{
-									$oran="1.0".$urunbilgisi[0]["kdvoran"];
-								}
-								$fiyat=($fiyat/$oran);/*kdvsiz hali*/
-								
-							}
-    ?>
-    <span class="new_price"><?=number_format($fiyat,2,",",".")?> TL</span>
-    <?php
-}
-                                    ?>
-                                            
-                                </div>
-                                <div class="col-lg-4 col-md-6">
-                                    <div class="btn_add_to_cart"><a href="javascript:void(0);" onclick="sepeteEkle('<?=SITE?>',<?=$urunbilgisi[0]['ID']?>);" class="btn_1">Sepete Ekle</a></div>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- /prod_info -->
-                        <div class="product_actions">
-                            <ul>
-                                <li>
-                                    <a onclick="favoriyeEkle('<?=SITE?>','<?=$urunbilgisi[0]["ID"]?>','<?=md5(sha1($urunbilgisi[0]["ID"]))?>');"><i class="ti-heart"></i><span>Favoriye Ekle</span></a>
-                                </li>
-
-                            </ul>
-                        </div>
-                        <!-- /product_actions -->
-                        
-                        <!-- MOVED TABS SECTION HERE -->
-                        <div class="tabs_product">
-                            <div class="container">
-                                <ul class="nav nav-tabs" role="tablist">
-                                    <li class="nav-item">
-                                        <a id="tab-A" href="#pane-A" class="nav-link active" data-toggle="tab" role="tab">Açıklama</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a id="tab-B" href="#pane-B" class="nav-link" data-toggle="tab" role="tab">Yorumlar</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a id="tab-C" href="#pane-C" class="nav-link" data-toggle="tab" role="tab">Yorum Yap</a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                        <!-- /tabs_product -->
-                        <div class="tab_content_wrapper">
-                            <div class="container">
-                                <div class="tab-content" role="tablist">
-                                    <div id="pane-A" class="card tab-pane fade active show" role="tabpanel" aria-labelledby="tab-A">
-                                        <div class="card-header" role="tab" id="heading-A">
-                                            <h5 class="mb-0">
-                                                <a class="collapsed" data-toggle="collapse" href="#collapse-A" aria-expanded="false"
-                                                    aria-controls="collapse-A">
-                                                    Açıklama
-                                                </a>
-                                            </h5>
-                                        </div>
-                                        <div id="collapse-A" class="collapse" role="tabpanel" aria-labelledby="heading-A">
-                                            <div class="card-body">
-                                                <div class="row justify-content-between">
-                                                    <div class="col-lg-12">
-                                                    <?=stripslashes($urunbilgisi[0]["metin"])?>
-                                                    </div>
-                                                    
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- /TAB A -->
-                                    <div id="pane-B" class="card tab-pane fade" role="tabpanel" aria-labelledby="tab-B">
-                                        <div class="card-header" role="tab" id="heading-B">
-                                            <h5 class="mb-0">
-                                                <a class="collapsed" data-toggle="collapse" href="#collapse-B" aria-expanded="false"
-                                                    aria-controls="collapse-B">
-                                                    Yorumlar
-                                                </a>
-                                            </h5>
-                                        </div>
-                                        <div id="collapse-B" class="collapse" role="tabpanel" aria-labelledby="heading-B">
-                                            <div class="card-body">
-                                            <div class="row justify-content-between">
+                                
+                                <!-- NEW PRICE ROW: Added price field with same layout as quantity -->
+                                <div class="row">
+                                    <label class="col-xl-5 col-lg-5 col-md-6 col-6"><strong>Fiyat</strong></label>
+                                    <div class="col-xl-4 col-lg-5 col-md-6 col-6">
+                                        <div class="price-display">
                                             <?php
-                                            $yorumlar=$VT->VeriGetir("yorumlar","WHERE durum=? AND urunID=?",array(1,$urunbilgisi[0]["ID"]),"ORDER BY ID DESC");
-                                            if($yorumlar!=false)
+                                            $indirimOranBilgisi="";
+                                            if(!empty($urunbilgisi[0]["indirimlifiyat"]))
                                             {
-                                                for($i=0;$i<count($yorumlar);$i++)
+                                                $indirimlifiyat=$urunbilgisi[0]["indirimlifiyat"].".".$urunbilgisi[0]["indirimlikurus"];
+                                                $normalfiyat=$urunbilgisi[0]["fiyat"].".".$urunbilgisi[0]["kurus"];
+                                                $hesapla=(($indirimlifiyat/$normalfiyat)*100);
+                                                $indirimorani=round(100-$hesapla);
+                                                /* İndirim Oranı Hesaplaması*/
+                                                $indirimOranBilgisi='<span class="percentage">%'.$indirimorani.' İndirimli</span> ';
+                                            }
+                                            
+                                            if(!empty($urunbilgisi[0]["indirimlifiyat"]))
+                                            {
+                                                $fiyat=$urunbilgisi[0]["indirimlifiyat"].".".$urunbilgisi[0]["indirimlikurus"];
+                                                $normalfiyat=$urunbilgisi[0]["fiyat"].".".$urunbilgisi[0]["kurus"];
+                                               
+                                                if($urunbilgisi[0]["kdvdurum"]==1)
                                                 {
-                                                    $yorumyapanuye=$VT->VeriGetir("uyeler","WHERE ID=?",array($yorumlar[$i]["uyeID"]),"ORDER BY ID ASC",1);
-                                                    if($yorumyapanuye!=false)
+                                                    if($urunbilgisi[0]["kdvoran"]>9)
                                                     {
-                                                    $uyeadsoyad=$yorumyapanuye[0]["ad"]." ".mb_substr($yorumyapanuye[0]["soyad"],0,1,"UTF-8");
+                                                        $oran="1.".$urunbilgisi[0]["kdvoran"];
                                                     }
                                                     else
                                                     {
-                                                        $uyeadsoyad="Üye Adı Gizlendi";
+                                                        $oran="1.0".$urunbilgisi[0]["kdvoran"];
                                                     }
-                                                    ?>
-                                                    <div class="col-lg-4">
-                                                    <div class="review_content">
-                                                        <div class="clearfix add_bottom_10">
-                                                            <span class="rating">
-                                                                <?php
-                                                                if($yorumlar[$i]["puan"]==1)
-                                                                {
-                                                                    ?>
-                                                                        <i class="icon-star"></i>
-                                                            <i class="icon-star empty"></i>
-                                                            <i class="icon-star empty"></i>
-                                                            <i class="icon-star empty"></i>
-                                                            <i class="icon-star empty">
-                                                                    <?php
-                                                                }
-                                                                else if($yorumlar[$i]["puan"]==2)
-                                                                {
-                                                                    ?>
-                                                                        <i class="icon-star"></i>
-                                                            <i class="icon-star "></i>
-                                                            <i class="icon-star empty"></i>
-                                                            <i class="icon-star empty"></i>
-                                                            <i class="icon-star empty">
-                                                                    <?php
-                                                                }
-                                                                else if($yorumlar[$i]["puan"]==3)
-                                                                {
-                                                                    ?>
-                                                                        <i class="icon-star"></i>
-                                                            <i class="icon-star"></i>
-                                                            <i class="icon-star"></i>
-                                                            <i class="icon-star empty"></i>
-                                                            <i class="icon-star empty">
-                                                                    <?php
-                                                                }
-                                                                else if($yorumlar[$i]["puan"]==4)
-                                                                {
-                                                                    ?>
-                                                                        <i class="icon-star"></i>
-                                                            <i class="icon-star"></i>
-                                                            <i class="icon-star"></i>
-                                                            <i class="icon-star"></i>
-                                                            <i class="icon-star empty">
-                                                                    <?php
-                                                                }
-                                                                else if($yorumlar[$i]["puan"]==5)
-                                                                {
-                                                                    ?>
-                                                                        <i class="icon-star"></i>
-                                                            <i class="icon-star"></i>
-                                                            <i class="icon-star"></i>
-                                                            <i class="icon-star"></i>
-                                                            <i class="icon-star">
-                                                                    <?php
-                                                                }
-                                                                ?>
-                                                            
-                                                            </i><em><?=$yorumlar[$i]["puan"]?>/5</em></span>
-                                                            <em><?=date("d.m.Y",strtotime($yorumlar[$i]["tarih"]))?></em>
-                                                        </div>
-                                                        <h4><?=$uyeadsoyad?>.</h4>
-                                                        <p><?=$yorumlar[$i]["metin"]?></p>
-                                                    </div>
-                                                </div>
-                                                    <?php
+                                                    $fiyat=($fiyat/$oran);/*kdvsiz hali*/
+                                                    $normalfiyat=($normalfiyat/$oran);
                                                 }
+                                            ?>
+                                            <span class="new_price"><?=number_format($fiyat,2,",",".")?> TL</span>
+                                            <?=$indirimOranBilgisi?>
+                                            <span class="old_price"><?=number_format($normalfiyat,2,",",".")?> TL</span>
+                                            <?php
                                             }
                                             else
                                             {
-                                                ?>
-                                                    <p>Bu ürüne hiç yorum yapılmamış. Bu ürüne ilk yorum yapan sen ol.</p>
-                                                <?php
+                                                $fiyat=$urunbilgisi[0]["fiyat"].".".$urunbilgisi[0]["kurus"];
+                                                if($urunbilgisi[0]["kdvdurum"]==1)
+                                                {
+                                                    if($urunbilgisi[0]["kdvoran"]>9)
+                                                    {
+                                                        $oran="1.".$urunbilgisi[0]["kdvoran"];
+                                                    }
+                                                    else
+                                                    {
+                                                        $oran="1.0".$urunbilgisi[0]["kdvoran"];
+                                                    }
+                                                    $fiyat=($fiyat/$oran);/*kdvsiz hali*/
+                                                }
+                                            ?>
+                                            <span class="new_price"><?=number_format($fiyat,2,",",".")?> TL</span>
+                                            <?php
                                             }
                                             ?>
-                                        
-                                                
-                                            
-                                            </div>
-                                            </div>
-                                            <!-- /card-body -->
                                         </div>
                                     </div>
-                                    <div id="pane-C" class="card tab-pane fade" role="tabpanel" aria-labelledby="tab-C">
-                                        <div class="card-header" role="tab" id="heading-C">
-                                            <h5 class="mb-0">
-                                                <a class="collapsed" data-toggle="collapse" href="#collapse-C" aria-expanded="false"
-                                                    aria-controls="collapse-C">
-                                                    Yorum Yap
-                                                </a>
-                                            </h5>
+                                </div>
+                                
+                                <!-- ADD TO CART BUTTON - MOVED INSIDE THE FORM -->
+                                <div class="row">
+                                    <div class="col-12 mt-3">
+                                        <div class="btn_add_to_cart">
+                                            <a href="javascript:void(0);" onclick="sepeteEkle('<?=SITE?>',<?=$urunbilgisi[0]['ID']?>);" class="btn_1">Sepete Ekle</a>
                                         </div>
-                                        <div id="collapse-C" class="collapse" role="tabpanel" aria-labelledby="heading-C">
-                                            <div class="card-body">
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <!-- /prod_info -->
+                    <div class="product_actions">
+                        <ul>
+                            <li>
+                                <a onclick="favoriyeEkle('<?=SITE?>','<?=$urunbilgisi[0]["ID"]?>','<?=md5(sha1($urunbilgisi[0]["ID"]))?>');"><i class="ti-heart"></i><span>Favoriye Ekle</span></a>
+                            </li>
+
+                        </ul>
+                    </div>
+                    <!-- /product_actions -->
+                    
+                    <!-- MOVED TABS SECTION HERE -->
+                    <div class="tabs_product">
+                        <div class="container">
+                            <ul class="nav nav-tabs" role="tablist">
+                                <li class="nav-item">
+                                    <a id="tab-A" href="#pane-A" class="nav-link active" data-toggle="tab" role="tab">Açıklama</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a id="tab-B" href="#pane-B" class="nav-link" data-toggle="tab" role="tab">Yorumlar</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a id="tab-C" href="#pane-C" class="nav-link" data-toggle="tab" role="tab">Yorum Yap</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <!-- /tabs_product -->
+                    <div class="tab_content_wrapper">
+                        <div class="container">
+                            <div class="tab-content" role="tablist">
+                                <div id="pane-A" class="card tab-pane fade active show" role="tabpanel" aria-labelledby="tab-A">
+                                    <div class="card-header" role="tab" id="heading-A">
+                                        <h5 class="mb-0">
+                                            <a class="collapsed" data-toggle="collapse" href="#collapse-A" aria-expanded="false"
+                                                aria-controls="collapse-A">
+                                                Açıklama
+                                            </a>
+                                        </h5>
+                                    </div>
+                                    <div id="collapse-A" class="collapse" role="tabpanel" aria-labelledby="heading-A">
+                                        <div class="card-body">
+                                            <div class="row justify-content-between">
+                                                <div class="col-lg-12">
+                                                <?=stripslashes($urunbilgisi[0]["metin"])?>
+                                                </div>
+                                                
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- /TAB A -->
+                                <div id="pane-B" class="card tab-pane fade" role="tabpanel" aria-labelledby="tab-B">
+                                    <div class="card-header" role="tab" id="heading-B">
+                                        <h5 class="mb-0">
+                                            <a class="collapsed" data-toggle="collapse" href="#collapse-B" aria-expanded="false"
+                                                aria-controls="collapse-B">
+                                                Yorumlar
+                                            </a>
+                                        </h5>
+                                    </div>
+                                    <div id="collapse-B" class="collapse" role="tabpanel" aria-labelledby="heading-B">
+                                        <div class="card-body">
+                                        <div class="row justify-content-between">
                                         <?php
-                                        $yorumyapma=false;
+                                        $yorumlar=$VT->VeriGetir("yorumlar","WHERE durum=? AND urunID=?",array(1,$urunbilgisi[0]["ID"]),"ORDER BY ID DESC");
+                                        if($yorumlar!=false)
+                                        {
+                                            for($i=0;$i<count($yorumlar);$i++)
+                                            {
+                                                $yorumyapanuye=$VT->VeriGetir("uyeler","WHERE ID=?",array($yorumlar[$i]["uyeID"]),"ORDER BY ID ASC",1);
+                                                if($yorumyapanuye!=false)
+                                                {
+                                                $uyeadsoyad=$yorumyapanuye[0]["ad"]." ".mb_substr($yorumyapanuye[0]["soyad"],0,1,"UTF-8");
+                                                }
+                                                else
+                                                {
+                                                    $uyeadsoyad="Üye Adı Gizlendi";
+                                                }
+                                                ?>
+                                                <div class="col-lg-4">
+                                                <div class="review_content">
+                                                    <div class="clearfix add_bottom_10">
+                                                        <span class="rating">
+                                                            <?php
+                                                            if($yorumlar[$i]["puan"]==1)
+                                                            {
+                                                                ?>
+                                                                    <i class="icon-star"></i>
+                                                        <i class="icon-star empty"></i>
+                                                        <i class="icon-star empty"></i>
+                                                        <i class="icon-star empty"></i>
+                                                        <i class="icon-star empty">
+                                                                <?php
+                                                            }
+                                                            else if($yorumlar[$i]["puan"]==2)
+                                                            {
+                                                                ?>
+                                                                    <i class="icon-star"></i>
+                                                        <i class="icon-star "></i>
+                                                        <i class="icon-star empty"></i>
+                                                        <i class="icon-star empty"></i>
+                                                        <i class="icon-star empty">
+                                                                <?php
+                                                            }
+                                                            else if($yorumlar[$i]["puan"]==3)
+                                                            {
+                                                                ?>
+                                                                    <i class="icon-star"></i>
+                                                        <i class="icon-star"></i>
+                                                        <i class="icon-star"></i>
+                                                        <i class="icon-star empty"></i>
+                                                        <i class="icon-star empty">
+                                                                <?php
+                                                            }
+                                                            else if($yorumlar[$i]["puan"]==4)
+                                                            {
+                                                                ?>
+                                                                    <i class="icon-star"></i>
+                                                        <i class="icon-star"></i>
+                                                        <i class="icon-star"></i>
+                                                        <i class="icon-star"></i>
+                                                        <i class="icon-star empty">
+                                                                <?php
+                                                            }
+                                                            else if($yorumlar[$i]["puan"]==5)
+                                                            {
+                                                                ?>
+                                                                    <i class="icon-star"></i>
+                                                        <i class="icon-star"></i>
+                                                        <i class="icon-star"></i>
+                                                        <i class="icon-star"></i>
+                                                        <i class="icon-star">
+                                                                <?php
+                                                            }
+                                                            ?>
+                                                        
+                                                        </i><em><?=$yorumlar[$i]["puan"]?>/5</em></span>
+                                                        <em><?=date("d.m.Y",strtotime($yorumlar[$i]["tarih"]))?></em>
+                                                    </div>
+                                                    <h4><?=$uyeadsoyad?>.</h4>
+                                                    <p><?=$yorumlar[$i]["metin"]?></p>
+                                                </div>
+                                            </div>
+                                                <?php
+                                            }
+                                        }
+                                        else
+                                        {
+                                            ?>
+                                                <p>Bu ürüne hiç yorum yapılmamış. Bu ürüne ilk yorum yapan sen ol.</p>
+                                            <?php
+                                        }
+                                        ?>
+                                    
+                                            
+                                        
+                                        </div>
+                                        </div>
+                                        <!-- /card-body -->
+                                    </div>
+                                </div>
+                                <div id="pane-C" class="card tab-pane fade" role="tabpanel" aria-labelledby="tab-C">
+                                    <div class="card-header" role="tab" id="heading-C">
+                                        <h5 class="mb-0">
+                                            <a class="collapsed" data-toggle="collapse" href="#collapse-C" aria-expanded="false"
+                                                aria-controls="collapse-C">
+                                                Yorum Yap
+                                            </a>
+                                        </h5>
+                                    </div>
+                                    <div id="collapse-C" class="collapse" role="tabpanel" aria-labelledby="heading-C">
+                                        <div class="card-body">
+                                    <?php
+                                    $yorumyapma=false;
 if (!empty($_SESSION["uyeID"])) {
     $uyeID = $VT->filter($_SESSION["uyeID"]);
     $uyelikbilgisi = $VT->VeriGetir("uyeler", "WHERE ID=? AND durum=?", array($uyeID, 1), "ORDER BY ID ASC", 1);
@@ -433,168 +440,212 @@ else
     <?php
 }
 ?>
-                                            </div>
-                                            <!-- /card-body -->
                                         </div>
+                                        <!-- /card-body -->
                                     </div>
                                 </div>
-                                <!-- /tab-content -->
                             </div>
-                            <!-- /container -->
+                            <!-- /tab-content -->
                         </div>
-                        <!-- /tab_content_wrapper -->
+                        <!-- /container -->
                     </div>
-                </div>
-                <!-- /row -->
-            </div>
-            <!-- /container -->
-
-            <div class="container margin_60_35">
-		<div class="main_title">
-			<h2>Sizin İçin Seçtiklerimiz</h2>
-			<p>Size özel ürünlerimizi keşfedin.</p>
-		</div>
-		<div class="owl-carousel owl-theme products_carousel">
-
-			<?php
-			$urunler = $VT->VeriGetir("urunler", "WHERE durum=? AND kategori=? AND ID<>?", array(1,$urunbilgisi[0]["kategori"],$urunbilgisi[0]["ID"]), "ORDER BY RAND() ASC",10);
-			if ($urunler != false) {
-				for ($i = 0; $i < count($urunler); $i++) {
-
-					?>
-
-					<div class="item">
-						<div class="grid_item">
-							
-							<figure>
-								<a href="<?=SITE?>urun/<?=$urunler[$i]["seflink"]?>">
-									<img class="owl-lazy" src="<?=SITE?>images/urunler/<?=$urunler[$i]["resim"]?>"
-										data-src="<?=SITE?>images/urunler/<?=$urunler[$i]["resim"]?>" alt="<?=stripslashes($urunler[$i]["baslik"])?>">
-								</a>
-							</figure>
-							
-							<a href="<?=SITE?>urun/<?=$urunler[$i]["seflink"]?>">
-								<h3><?=stripslashes($urunler[$i]["baslik"])?></h3>
-							</a>
-							<div class="price_box">
-								<?php
-									if(!empty($urunler[$i]["indirimlifiyat"]))
-									{
-										$fiyat=$urunler[$i]["indirimlifiyat"].".".$urunler[$i]["indirimlikurus"];
-										
-									}
-									else
-									{
-										$fiyat=$urunler[$i]["fiyat"].".".$urunler[$i]["kurus"];
-							
-									}
-								?>
-
-
-								<span class="new_price"><?=number_format($fiyat,2,",",".")?> TL</span>
-							</div>
-							<ul>
-								<li><a onclick="favoriyeEkle('<?=SITE?>','<?=$urunbilgisi[0]["ID"]?>','<?=md5(sha1($urunbilgisi[0]["ID"]))?>');" class="tooltip-1" data-toggle="tooltip" data-placement="left"
-										title="Favoriye Ekle"><i class="ti-heart"></i><span>Favoriye Ekle</span></a></li>
-							</ul>
-						</div>
-						<!-- /grid_item -->
-					</div>
-					<?php
-				}
-			}
-			?>
-			<!-- /item -->
-
-			<!-- /item -->
-		</div>
-		<!-- /products_carousel -->
-	</div>
-	<!-- /container -->
-
-            <!-- Restructured feat section for better layout and no spacing issues -->
-            <div class="feat">
-                <div class="container">
-                    <ul>
-                        <li>
-                            <div class="box">
-                                <i class="ti-gift"></i>
-                                <h3>Ücretsiz Kargo</h3>
-                                <p>Tüm Ürünlerde Ücretsiz Kargo :)</p>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="box">
-                                <i class="ti-wallet"></i>
-                                <h3>Güvenli Ödeme</h3>
-                                <p>100% Şifreli Alışveriş</p>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="box">
-                                <i class="ti-headphone-alt"></i>
-                                <h3>7/24 Destek</h3>
-                                <p>Sorularınız için Bize Ulaşın</p>
-                            </div>
-                        </li>
-                    </ul>
+                    <!-- /tab_content_wrapper -->
                 </div>
             </div>
-            <!--/feat-->
+            <!-- /row -->
+        </div>
+        <!-- /container -->
 
-        </main>
-        <!-- /main -->
-
-        <!-- Define product data for JavaScript -->
-        <script>
-            // Make product info available to JavaScript
-            var productData = {
-                name: "<?=htmlspecialchars(stripslashes($urunbilgisi[0]["baslik"]), ENT_QUOTES)?>",
-                price: "<?=!empty($urunbilgisi[0]["indirimlifiyat"]) ? 
-                    number_format(($urunbilgisi[0]["indirimlifiyat"].".".$urunbilgisi[0]["indirimlikurus"]),2,",",".") : 
-                    number_format(($urunbilgisi[0]["fiyat"].".".$urunbilgisi[0]["kurus"]),2,",",".")?> TL",
-                rawPrice: <?=!empty($urunbilgisi[0]["indirimlifiyat"]) ? 
-                    ($urunbilgisi[0]["indirimlifiyat"].".".$urunbilgisi[0]["indirimlikurus"]) : 
-                    ($urunbilgisi[0]["fiyat"].".".$urunbilgisi[0]["kurus"])?>,
-                image: "<?=SITE?>images/urunler/<?=$urunbilgisi[0]["resim"]?>"
-            };
-            
-            document.addEventListener('DOMContentLoaded', function() {
-                // Force redraw of the footer to avoid spacing issues
-                var footer = document.querySelector('footer');
-                if(footer) {
-                    footer.style.display = 'none';
-                    setTimeout(function() {
-                        footer.style.display = 'block';
-                    }, 10);
-                }
-                
-                // Add event listener to quantity input to update prices if needed
-                var quantityInput = document.getElementById('adet');
-                if (quantityInput) {
-                    quantityInput.addEventListener('change', function() {
-                        // You can add code here if you want to update any displayed total price on the page
-                    });
-                }
-            });
-        </script>
+        <div class="container margin_60_35">
+    <div class="main_title">
+        <h2>Sizin İçin Seçtiklerimiz</h2>
+        <p>Size özel ürünlerimizi keşfedin.</p>
+    </div>
+    <div class="owl-carousel owl-theme products_carousel">
 
         <?php
-    }
-    else
-    {
+        $urunler = $VT->VeriGetir("urunler", "WHERE durum=? AND kategori=? AND ID<>?", array(1,$urunbilgisi[0]["kategori"],$urunbilgisi[0]["ID"]), "ORDER BY RAND() ASC",10);
+        if ($urunler != false) {
+            for ($i = 0; $i < count($urunler); $i++) {
+
+                ?>
+
+                <div class="item">
+                    <div class="grid_item">
+                        
+                        <figure>
+                            <a href="<?=SITE?>urun/<?=$urunler[$i]["seflink"]?>">
+                                <img class="owl-lazy" src="<?=SITE?>images/urunler/<?=$urunler[$i]["resim"]?>"
+                                    data-src="<?=SITE?>images/urunler/<?=$urunler[$i]["resim"]?>" alt="<?=stripslashes($urunler[$i]["baslik"])?>">
+                            </a>
+                        </figure>
+                        
+                        <a href="<?=SITE?>urun/<?=$urunler[$i]["seflink"]?>">
+                            <h3><?=stripslashes($urunler[$i]["baslik"])?></h3>
+                        </a>
+                        <div class="price_box">
+                            <?php
+                                if(!empty($urunler[$i]["indirimlifiyat"]))
+                                {
+                                    $fiyat=$urunler[$i]["indirimlifiyat"].".".$urunler[$i]["indirimlikurus"];
+                                    
+                                }
+                                else
+                                {
+                                    $fiyat=$urunler[$i]["fiyat"].".".$urunler[$i]["kurus"];
+                        
+                                }
+                            ?>
+
+
+                            <span class="new_price"><?=number_format($fiyat,2,",",".")?> TL</span>
+                        </div>
+                        <ul>
+                            <li><a onclick="favoriyeEkle('<?=SITE?>','<?=$urunbilgisi[0]["ID"]?>','<?=md5(sha1($urunbilgisi[0]["ID"]))?>');" class="tooltip-1" data-toggle="tooltip" data-placement="left"
+                                    title="Favoriye Ekle"><i class="ti-heart"></i><span>Favoriye Ekle</span></a></li>
+                        </ul>
+                    </div>
+                    <!-- /grid_item -->
+                </div>
+                <?php
+            }
+        }
         ?>
-        <meta http-equiv="refresh" content="0;url=<?=SITE?>">
-        <?php
-        exit();
-    }
-    
+        <!-- /item -->
+
+        <!-- /item -->
+    </div>
+    <!-- /products_carousel -->
+</div>
+<!-- /container -->
+
+        <!-- Restructured feat section for better layout and no spacing issues -->
+        <div class="feat">
+            <div class="container">
+                <ul>
+                    <li>
+                        <div class="box">
+                            <i class="ti-gift"></i>
+                            <h3>Ücretsiz Kargo</h3>
+                            <p>Tüm Ürünlerde Ücretsiz Kargo :)</p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="box">
+                            <i class="ti-wallet"></i>
+                            <h3>Güvenli Ödeme</h3>
+                            <p>100% Şifreli Alışveriş</p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="box">
+                            <i class="ti-headphone-alt"></i>
+                            <h3>7/24 Destek</h3>
+                            <p>Sorularınız için Bize Ulaşın</p>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <!--/feat-->
+
+    </main>
+    <!-- /main -->
+
+    <!-- Define product data for JavaScript -->
+    <script>
+        // Make product info available to JavaScript
+        var productData = {
+            name: "<?=htmlspecialchars(stripslashes($urunbilgisi[0]["baslik"]), ENT_QUOTES)?>",
+            price: "<?=!empty($urunbilgisi[0]["indirimlifiyat"]) ? 
+                number_format(($urunbilgisi[0]["indirimlifiyat"].".".$urunbilgisi[0]["indirimlikurus"]),2,",",".") : 
+                number_format(($urunbilgisi[0]["fiyat"].".".$urunbilgisi[0]["kurus"]),2,",",".")?> TL",
+            rawPrice: <?=!empty($urunbilgisi[0]["indirimlifiyat"]) ? 
+                ($urunbilgisi[0]["indirimlifiyat"].".".$urunbilgisi[0]["indirimlikurus"]) : 
+                ($urunbilgisi[0]["fiyat"].".".$urunbilgisi[0]["kurus"])?>,
+            image: "<?=SITE?>images/urunler/<?=$urunbilgisi[0]["resim"]?>"
+        };
+        
+        document.addEventListener('DOMContentLoaded', function() {
+            // Force redraw of the footer to avoid spacing issues
+            var footer = document.querySelector('footer');
+            if(footer) {
+                footer.style.display = 'none';
+                setTimeout(function() {
+                    footer.style.display = 'block';
+                }, 10);
+            }
+            
+            // Add event listener to quantity input to update prices if needed
+            var quantityInput = document.getElementById('adet');
+            if (quantityInput) {
+                quantityInput.addEventListener('change', function() {
+                    // You can add code here if you want to update any displayed total price on the page
+                });
+            }
+        });
+    </script>
+
+    <style>
+        /* Add this to ensure price display looks good */
+        .price-display {
+            padding: 8px 0;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+        
+        .price-display .new_price {
+            display: block;
+            font-size: 18px;
+            font-weight: 700;
+            color: #CD1818;
+        }
+        
+        .price-display .old_price {
+            margin-top: 3px;
+            font-size: 14px;
+        }
+        
+        .price-display .percentage {
+            margin-top: 3px;
+            display: inline-block;
+        }
+        
+        /* Ensure consistent button spacing */
+        .btn_add_to_cart {
+            margin-top: 20px;
+        }
+        
+        /* Adjust responsive spacing */
+        @media (max-width: 767px) {
+            .price-display {
+                padding: 5px 0;
+            }
+            
+            .btn_add_to_cart {
+                margin-top: 15px;
+                margin-bottom: 15px;
+            }
+        }
+    </style>
+
+    <?php
 }
 else
-    {
-        ?>
-        <meta http-equiv="refresh" content="0;url=<?=SITE?>">
-        <?php
-        exit();
-    }
+{
+    ?>
+    <meta http-equiv="refresh" content="0;url=<?=SITE?>">
+    <?php
+    exit();
+}
+
+}
+else
+{
+    ?>
+    <meta http-equiv="refresh" content="0;url=<?=SITE?>">
+    <?php
+    exit();
+}
 ?>

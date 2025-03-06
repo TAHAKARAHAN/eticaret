@@ -1,0 +1,206 @@
+/* Fixes for hamburger menu display and tab content spacing */
+
+/* Fix hamburger menu visibility on mobile */
+@media (max-width: 767px) {
+    /* Fix duplicate hamburger menus */
+    .main_header .hamburger-box {
+        display: none !important; /* Hide any duplicate hamburger boxes */
+    }
+    
+    /* Only show the hamburger in the main navigation element */
+    .main_header nav a.open_close .hamburger-box {
+        display: inline-block !important;
+        position: relative !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+        width: 30px;
+        height: 24px;
+    }
+    
+    /* Ensure hamburger inner lines are visible for the correct menu */
+    .main_header nav a.open_close .hamburger-inner, 
+    .main_header nav a.open_close .hamburger-inner::before, 
+    .main_header nav a.open_close .hamburger-inner::after {
+        display: block !important;
+        position: absolute !important;
+        width: 26px !important;
+        height: 2px !important;
+        background-color: #fff !important;
+        border-radius: 0 !important;
+        visibility: visible !important;
+    }
+
+    /* Adjust specific positioning for hamburger lines */
+    .main_header nav a.open_close .hamburger-inner {
+        top: 50% !important;
+        margin-top: -1px !important;
+    }
+    
+    .main_header nav a.open_close .hamburger-inner::before {
+        content: "" !important;
+        top: -8px !important;
+    }
+    
+    .main_header nav a.open_close .hamburger-inner::after {
+        content: "" !important;
+        bottom: -8px !important;
+    }
+
+    /* Make sure the menu button is visible */
+    .main_header nav a.open_close {
+        display: block !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+        position: absolute !important;
+        top: -26px !important;
+        left: 5px !important;
+        z-index: 5 !important;
+    }
+    
+    /* Fix the categories button - ensure text is on the left */
+    .btn_cat_mob {
+        visibility: visible !important;
+        opacity: 1 !important;
+        display: flex !important;
+        align-items: center !important;
+        text-indent: 0 !important;
+        padding-left: 0 !important;
+        margin-left: 0 !important;
+    }
+    
+    /* Make categories text visible */
+    .btn_cat_mob span {
+        display: inline-block !important;
+        visibility: visible !important;
+        margin-left: 5px !important;
+        font-weight: 700 !important;
+        font-size: 13px !important;
+        text-transform: uppercase !important;
+    }
+
+    /* Properly position the hamburger icon within category button */
+    .top_tools .btn_cat_mob .hamburger-box {
+        display: inline-block !important;
+        position: relative !important;
+        margin-right: 8px !important;
+        top: 0 !important;
+        left: 0 !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+    }
+    
+    /* Fix the hamburger lines in the category button */
+    .top_tools .btn_cat_mob .hamburger-inner,
+    .top_tools .btn_cat_mob .hamburger-inner::before,
+    .top_tools .btn_cat_mob .hamburger-inner::after {
+        background-color: #111 !important;
+        display: block !important;
+        visibility: visible !important;
+    }
+    
+    /* Ensure the category button is properly aligned */
+    .top_tools > li {
+        position: relative !important;
+        margin-left: 10px !important;
+    }
+
+    /* Hide category button hamburger to prevent duplication */
+    .top_tools .btn_cat_mob .hamburger-box {
+        display: none !important;
+    }
+
+    /* Ensure the mobile menu button itself is visible */
+    .btn_cat_mob,
+    .btn_search_mob {
+        visibility: visible !important;
+        opacity: 1 !important;
+        display: block !important;
+    }
+
+    /* Ensure btn_cat_mob text is visible */
+    .btn_cat_mob {
+        text-indent: 0 !important;
+    }
+}
+
+/* Fix spacing between add to cart button and tab content */
+@media (max-width: 991px) {
+    /* Add more space between buttons and tab content */
+    .btn_add_to_cart {
+        margin-bottom: 30px;
+    }
+    
+    /* Add clear separation between product info and tabs */
+    .prod_info {
+        border-bottom: 1px solid #ededed;
+        margin-bottom: 25px;
+        padding-bottom: 25px;
+    }
+
+    /* Ensure tabs have proper separation */
+    .tabs_product {
+        margin-top: 30px;
+        padding-top: 10px;
+        clear: both;
+    }
+
+    /* Ensure collapsed tabs have proper spacing */
+    .tab_content_wrapper .card {
+        margin-bottom: 15px;
+    }
+
+    /* Fix spacing for tab headers */
+    .tab_content_wrapper .card .card-header {
+        padding: 0;
+    }
+
+    /* Make collapsed content more readable with padding */
+    .tab_content_wrapper .card .collapse, 
+    .tab_content_wrapper .card .collapsing {
+        padding: 0 15px;
+    }
+
+    /* Fix card body padding */
+    .tab_content_wrapper .card .card-body {
+        padding: 15px;
+    }
+
+    /* Ensure tabs headers have proper space */
+    .tabs_product .nav-tabs .nav-item {
+        margin-bottom: 5px;
+    }
+
+    /* Add visual separation for tabs on mobile */
+    .tabs_product .container {
+        border-top: 1px solid #eee;
+        padding-top: 15px;
+    }
+}
+
+/* Specific fixes for very small screens */
+@media (max-width: 575px) {
+    /* Add even more space on smallest screens */
+    .btn_add_to_cart {
+        margin-bottom: 20px;
+    }
+
+    /* Ensure the action row has more space */
+    .product_actions {
+        margin-bottom: 20px;
+        padding-bottom: 10px;
+    }
+}
+
+/* Make sure tabs are visually distinct */
+.tabs_product .nav-tabs {
+    margin-bottom: 0;
+}
+
+.tab_content_wrapper {
+    margin-top: 15px;
+}
+
+/* Ensure proper spacing between sections */
+.product_actions + .tabs_product {
+    margin-top: 25px;
+}

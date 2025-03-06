@@ -512,6 +512,52 @@ public function tekSorgu($query, $params = []) {
     }
 }
 
+    public function sepetUrunSayisi($uyeID = null) {
+        $toplamUrun = 0;
+        
+        // Check session-based cart first
+        if (isset($_SESSION["sepet"]) && is_array($_SESSION["sepet"])) {
+            foreach ($_SESSION["sepet"] as $urunID => $bilgi) {
+                if ($bilgi["varyasyondurumu"] == false) {
+                    // Regular product
+                    if (isset($bilgi["adet"]) && is_numeric($bilgi["adet"])) {
+                        $toplamUrun += $bilgi["adet"];
+                    } else {
+                        $toplamUrun++;
+                    }
+                } else {
+                    // Product with variations
+                    if (isset($_SESSION["sepetVaryasyon"][$urunID]) && is_array($_SESSION["sepetVaryasyon"][$urunID])) {
+                        foreach ($_SESSION["sepetVaryasyon"][$urunID] as $secenekID => $secenekAdet) {
+                            if (isset($secenekAdet["adet"]) && is_numeric($secenekAdet["adet"])) {
+                                $toplamUrun += $secenekAdet["adet"];
+                            } else {
+                                $toplamUrun++;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        
+        // If user is logged in, also check database-stored cart items
+        if (!empty($uyeID)) {
+            try {
+                $sorgu = $this->baglanti->prepare("SELECT COUNT(*) as urun_sayisi FROM sepet WHERE uyeID = ?");
+                $sorgu->execute([$uyeID]);
+                $sonuc = $sorgu->fetch(PDO::FETCH_ASSOC);
+                if ($sonuc && isset($sonuc['urun_sayisi'])) {
+                    $toplamUrun += intval($sonuc['urun_sayisi']);
+                }
+            } catch (Exception $e) {
+                error_log("Sepet ürün sayısı hatası: " . $e->getMessage());
+                // Continue with the session count if the database query fails
+            }
+        }
+        
+        return $toplamUrun;
+    }
+
 	/*Ektra Bonus Fonksiyonlar*/
 	/*
 	 * Sitenize gelen ziyaretçilerin rapoarlarını kaydedebilir ve hangi tarayıcıdan kaç ziyaretçinin sitenizi ziyaret ettiğini görebilirsiniz.

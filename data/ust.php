@@ -147,13 +147,20 @@
 				<ul class="top_tools">
 					<li>
 						<div class="dropdown dropdown-cart">
-							<a href="<?= SITE ?>sepet" class="cart_bt"></a>
+							<?php 
+							// Sepet ürün sayısını getir - improved version
+							$sepetSayisi = $VT->sepetUrunSayisi(!empty($_SESSION["uyeID"]) ? $_SESSION["uyeID"] : null);
+							?>
+							<a href="<?= SITE ?>sepet" class="cart_bt"><strong><?=$sepetSayisi?></strong></a>
 							<div class="dropdown-menu">
-
 								<div class="total_drop">
-
+									<div class="clearfix">
+										<strong><?=$sepetSayisi > 0 ? "Sepetinizde ".$sepetSayisi." ürün var" : "Sepetiniz boş"?></strong>
+									</div>
 									<a href="<?= SITE ?>sepet" class="btn_1 outline">Sepeti Göster</a>
+									<?php if($sepetSayisi > 0): ?>
 									<a href="<?=SITE?>odeme-tipi" class="btn_1">Ödemeye Geç</a>
+									<?php endif; ?>
 								</div>
 							</div>
 						</div>

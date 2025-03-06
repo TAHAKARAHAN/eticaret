@@ -1,0 +1,50 @@
+/* Custom styles for e-commerce website */
+
+/* Cart item count styling */
+.dropdown-cart .cart_bt strong {
+    position: absolute;
+    font-size: 12px;
+    font-weight: 700;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 20px;
+    background-color: #fff; 
+    color: #CD1818;
+    top: 2px;
+    right: -8px;
+}
+
+/* Custom notification styling */
+#notification-container {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 9999;
+}
+
+.notification {
+    padding: 15px 20px;
+    margin-bottom: 10px;
+    background-color: #4CAF50;
+    color: #fff;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    animation: fadeInRight 0.5s;
+}
+
+.notification.error {
+    background-color: #f44336;
+}
+
+@keyframes fadeInRight {
+    from {
+        opacity: 0;
+        transform: translateX(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
