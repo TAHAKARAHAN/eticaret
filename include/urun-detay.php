@@ -7,6 +7,7 @@ if (!empty($_GET["seflink"])) {
         <link href="<?= SITE ?>css/product_page.css" rel="stylesheet">
         <link href="<?= SITE ?>css/feat-fix.css" rel="stylesheet"> <!-- Add our new dedicated CSS file -->
         <link href="<?=SITE?>css/leave_review.css" rel="stylesheet">
+        <link href="<?=SITE?>css/notification.css" rel="stylesheet">
         <main>
             <div class="container margin_30">
             
@@ -543,6 +544,12 @@ else
 
         </main>
         <!-- /main -->
+
+        <!-- Add our notification JavaScript -->
+        <script>
+            var SITE = '<?=SITE?>';
+        </script>
+        <script src="<?=SITE?>js/notification.js"></script>
 
         <!-- Script to ensure footer appears correctly -->
         <script>

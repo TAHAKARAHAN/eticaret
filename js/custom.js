@@ -2,7 +2,11 @@ function sepeteEkle(site, urunID) {
     // Validate Product ID
     if (!urunID || isNaN(urunID)) {
         console.error("Invalid product ID:", urunID);
-        alert("Geçersiz ürün ID. Lütfen sayfayı yenileyip tekrar deneyiniz.");
+        if (window.cartNotification) {
+            cartNotification.error("Geçersiz ürün ID. Lütfen sayfayı yenileyip tekrar deneyiniz.");
+        } else {
+            showNotification("Geçersiz ürün ID. Lütfen sayfayı yenileyip tekrar deneyiniz.", "error");
+        }
         return;
     }
     
@@ -39,71 +43,89 @@ function sepeteEkle(site, urunID) {
     
     // Create form data
     var formData = new FormData();
-    formData.append('islemtipi', 'sepeteEkle');
+    formData.append('islem', 'sepeteEkle');
     formData.append('urunID', urunID.toString());
     formData.append('adet', adet.toString());
     
-    // Send AJAX request
-    $.ajax({
-        type: "POST",
-        url: site + "ajax.php",
-        data: {
-            islemtipi: "sepeteEkle",
-            urunID: urunID,
-            adet: adet
-        },
-        timeout: 30000, // 30 second timeout
-        success: function(response) {
-            console.log("AJAX Success - Raw response:", response);
-            
-            // Clean the response
-            response = response.trim();
-            console.log("AJAX Success - Cleaned response:", response);
-            
-            switch(response) {
-                case "TAMAM":
-                    alert("Ürün sepete eklendi");
-                    window.location.href = site + "sepet";
-                    break;
-                case "STOK":
-                    alert("Stok yetersiz");
-                    buttonElement.html(originalText);
-                    buttonElement.prop('disabled', false);
-                    break;
-                case "URUN_YOK":
-                    alert("Ürün bulunamadı");
-                    buttonElement.html(originalText);
-                    buttonElement.prop('disabled', false);
-                    break;
-                case "EKSIK_PARAMETRE":
-                    console.error("Missing parameter error. Sent data:", {
-                        islemtipi: "sepeteEkle",
-                        urunID: urunID,
-                        adet: adet
-                    });
-                    alert("Eksik parametre hatası. Lütfen sayfayı yenileyip tekrar deneyiniz.");
-                    buttonElement.html(originalText);
-                    buttonElement.prop('disabled', false);
-                    break;
-                default:
-                    console.error("Unknown response:", response);
-                    alert("İşlem şuan geçersizdir. Lütfen daha sonra tekrar deneyiniz.");
-                    buttonElement.html(originalText);
-                    buttonElement.prop('disabled', false);
-                    break;
+    // Send AJAX request - using fetch API for modern browsers
+    fetch(site + "ajax.php", {
+        method: "POST",
+        body: formData
+    })
+    .then(response => response.json())
+    .then(data => {
+        console.log("AJAX Success:", data);
+        
+        if (data.success) {
+            // Use custom notification system if available
+            if (window.cartNotification) {
+                cartNotification.success(data.message || "Ürün sepete eklendi");
+            } else {
+                showNotification(data.message || "Ürün sepete eklendi", "success");
             }
-        },
-        error: function(xhr, status, error) {
-            console.error("AJAX Error:", error);
-            console.error("Status:", status);
-            console.error("Response:", xhr.responseText);
-            
-            alert("Bir hata oluştu. Lütfen daha sonra tekrar deneyiniz. (Hata: " + status + ")");
-            
+            setTimeout(() => {
+                window.location.href = site + "sepet";
+            }, 1500);
+        } else {
+            // Show error notification
+            if (window.cartNotification) {
+                cartNotification.error(data.message || "Ürün eklenirken bir hata oluştu");
+            } else {
+                showNotification(data.message || "Ürün eklenirken bir hata oluştu", "error");
+            }
             buttonElement.html(originalText);
             buttonElement.prop('disabled', false);
         }
+    })
+    .catch(error => {
+        console.error("AJAX Error:", error);
+        
+        if (window.cartNotification) {
+            cartNotification.error("Bir hata oluştu. Lütfen daha sonra tekrar deneyiniz.");
+        } else {
+            showNotification("Bir hata oluştu. Lütfen daha sonra tekrar deneyiniz.", "error");
+        }
+        
+        buttonElement.html(originalText);
+        buttonElement.prop('disabled', false);
     });
+}
+
+// Simple notification fallback if the main one isn't loaded
+function showNotification(message, type) {
+    if (window.cartNotification) {
+        return cartNotification.show(message, type);
+    }
+    
+    // Create a simple notification container if it doesn't exist
+    let container = document.getElementById('notification-container');
+    if (!container) {
+        container = document.createElement('div');
+        container.id = 'notification-container';
+        container.style.position = 'fixed';
+        container.style.top = '20px';
+        container.style.right = '20px';
+        container.style.zIndex = '9999';
+        document.body.appendChild(container);
+    }
+
+    // Create notification element
+    const notification = document.createElement('div');
+    notification.style.padding = '15px 20px';
+    notification.style.marginBottom = '10px';
+    notification.style.backgroundColor = type === 'error' ? '#f44336' : '#4CAF50';
+    notification.style.color = '#fff';
+    notification.style.borderRadius = '4px';
+    notification.style.boxShadow = '0 2px 4px rgba(0,0,0,0.2)';
+    notification.innerHTML = message;
+
+    // Add to container
+    container.appendChild(notification);
+
+    // Auto remove after 3 seconds
+    setTimeout(() => {
+        notification.remove();
+    }, 3000);
 }
 
 // Document ready function

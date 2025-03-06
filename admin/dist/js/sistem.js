@@ -39,7 +39,7 @@ function aktifpasif(ID, tablo) {
       if (sonuc == "TAMAM") {
       }
       else {
-        alert("İşleminiz şuan geçersizdir. Lütfen daha sonra tekrar deneyiniz.");
+        // alert("İşleminiz şuan geçersizdir. Lütfen daha sonra tekrar deneyiniz.");
       }
     }
   });
@@ -92,7 +92,7 @@ function vitrinaktifpasif(ID, tablo) {
       if (sonuc == "TAMAM") {
       }
       else {
-        alert("İşleminiz şuan geçersizdir. Lütfen daha sonra tekrar deneyiniz.");
+        // alert("İşleminiz şuan geçersizdir. Lütfen daha sonra tekrar deneyiniz.");
       }
     }
   });

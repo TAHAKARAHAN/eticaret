@@ -80,7 +80,6 @@ include_once(DATA . "baglanti.php");
                     "resim" => $urunbilgisi[0]["resim"]
                 );
                 
-                echo '<script>alert("Ürün sepete eklendi!"); window.location.href="debug-cart.php";</script>';
             } else {
                 echo '<script>alert("Ürün bulunamadı!");</script>';
             }

@@ -21,8 +21,6 @@ if (isset($_GET['add_test'])) {
         "resim" => "default.jpg"
     );
     
-    $message = "Test ürün sepete eklendi!";
-    $alert_class = "success";
 }
 
 // Clear cart if requested
